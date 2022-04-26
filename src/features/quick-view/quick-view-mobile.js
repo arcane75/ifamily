@@ -1,7 +1,7 @@
 import React from 'react';
-import Router from 'next/router';
+// import Router from 'next/router';
 import { IMAGE_URL } from "../../common/baseUrl"
-import { Button } from '../../components/button/button';
+import { Button } from '../../Components/button/button';
 import StockOut from '../../layouts/stockOut/StockOut';
 import {
   QuickViewWrapper,
@@ -29,11 +29,11 @@ import {
 import { CartIcon } from '../../assets/icons/CartIcon';
 import { CURRENCY } from '../../utils/constant';
 
-import ReadMore from '../../components/truncate/truncate';
-import CarouselWithCustomDots from '../../components/multi-carousel/multi-carousel';
+import ReadMore from '../../Components/truncate/truncate';
+import CarouselWithCustomDots from '../../Components/multi-carousel/multi-carousel';
 import { useLocale } from '../../contexts/language/language.provider';
 import { useCart } from '../../contexts/cart/use-cart';
-import { Counter } from '../../components/counter/counter';
+import { Counter } from '../../Components/counter/counter';
 import { FormattedMessage } from 'react-intl';
 import LogoImage from '../../assets/images/Stock-Out-1.png';
 
@@ -101,13 +101,13 @@ const QuickViewMobile = ({
     e.stopPropagation();
     removeItem(modalProps);
   };
-  function onCategoryClick(slug) {
-    Router.push({
-      pathname: `/${type.toLowerCase()}`,
-      query: { category: slug },
-    }).then(() => window.scrollTo(0, 0));
-    hideModal();
-  }
+  // function onCategoryClick(slug) {
+  //   Router.push({
+  //     pathname: `/${type.toLowerCase()}`,
+  //     query: { category: slug },
+  //   }).then(() => window.scrollTo(0, 0));
+  //   hideModal();
+  // }
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { Svg } from '../../components/svg';
+import { Svg } from '../../Components/svg';
 export const CartIcon = (props) => (
   <Svg {...props} width='14.4px' height='12px' viewBox='0 0 14.4 12'>
     <g data-name='Group 120' transform='translate(-288 -413.89)'>

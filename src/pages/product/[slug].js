@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-import dynamic from 'next/dynamic';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+// import dynamic from 'next/dynamic';
+// import { NextPage } from 'next';
+// import { useRouter } from 'next/router';
 import axios from 'axios';
 import { baseURL, PRODUCTINFO_URL, API_KEY } from "../../common/baseUrl";
 import { useAppState, useAppDispatch } from "../../contexts/app/app.provider";
-import { useRefScroll } from '../../utils/use-ref-scroll';
+// import { useRefScroll } from '../../utils/use-ref-scroll';
 //import { SEO } from 'components/seo';
 import { Modal } from '@redq/reuse-modal';
 import ProductSingleWrapper, {
     ProductSingleContainer,
 } from '../../assets/styles/product-single.style';
 
-const ProductDetails = dynamic(() =>
-    import('../../components/product-details/product-details-one/product-details-one')
-);
+import ProductDetails from '../../Components/product-details/product-details-one/product-details-one';
+import CartPopUp from '../../features/carts/cart-popup';
 
-const CartPopUp = dynamic(() => import('../../features/carts/cart-popup'), {
-    ssr: false,
-});
 
 const ProductPage = ({ props, deviceType }) => {
 
-    const router = useRouter();
-    const { asPath } = router;
+    // const router = useRouter();
+    // const { asPath } = router;
 
     const mobile = useAppState("isMobile");
     const tablet = useAppState("isTablet");

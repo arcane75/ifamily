@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '../../components/button/button';
+//  import Link from 'next/link';
+import { Button } from '../../Components/button/button';
 import {
   CartPopupBody,
   PopupHeader,
@@ -24,9 +24,9 @@ import { CURRENCY } from '../../utils/constant';
 import { FormattedMessage } from 'react-intl';
 // import { useLocale } from 'contexts/language/language.provider';
 import { useAppState, useAppDispatch } from "../../contexts/app/app.provider";
-import { Scrollbar } from '../../components/scrollbar/scrollbar';
+import { Scrollbar } from '../../Components/scrollbar/scrollbar';
 import { useCart } from '../../contexts/cart/use-cart';
-import { CartItem } from '../../components/cart-item/cart-item';
+import { CartItem } from '../../Components/cart-item/cart-item';
 // import Coupon from 'features/coupon/coupon';
 
 // type CartPropsType = {
@@ -152,7 +152,7 @@ const Cart = ({
         </PromoCode>
 
         {cartItemsCount !== 0 ? (
-          <Link href='/checkout'>
+          // <Link href='/checkout'>
             <CheckoutButton onClick={onCloseBtnClick}>
               <>
                 <Title>
@@ -167,7 +167,7 @@ const Cart = ({
                 </PriceBox>
               </>
             </CheckoutButton>
-          </Link>
+          // </Link>
         ) : (
             <CheckoutButton>
               <>

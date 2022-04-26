@@ -9,6 +9,7 @@ const CartPopupBody = styled.div`
   border-radius: ${themeGet('radii.base', '6px')};
   background-color: ${themeGet('colors.white', '#ffffff')};
   box-sizing: content-box;
+  
 
   @media (max-width: 767px) {
     width: 100%;
@@ -93,7 +94,10 @@ const CloseButton = styled.button`
 
 const ItemWrapper = styled.div`
   width: 100%;
-  height: auto;
+  height: 100%;
+  margin-top: -90%;
+  
+  overflow-x: hidden;
 `;
 
 const ItemCards = styled.div`
@@ -289,8 +293,7 @@ export const NoProductImg = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  margin-top: 50px;
-
+  margin-top: -70%;
   @media (max-width: 580px) {
     margin-top: 20px;
   }
@@ -336,7 +339,7 @@ const CartSlidePopup = styled.div`
   position: fixed;
   bottom: 0;
   right: -450px;
-  z-index: 1010;
+  z-index: 100000;
   box-shadow: ${themeGet('shadows.big', '0 21px 36px rgba(0, 0, 0, 0.16)')};
   transition: all 0.35s ease-in-out;
 

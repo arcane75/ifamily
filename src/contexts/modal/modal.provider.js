@@ -1,11 +1,13 @@
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import React, { useCallback, useState, useMemo } from 'react';
 import { ModalType, ModalContext } from './modal.context';
 import { useMedia } from '../../utils/use-media';
-const SpringModal = dynamic(() =>
-  import('../../components/spring-modal/spring-modal')
-);
-const CenterModal = dynamic(() => import('../../components/modal/center-modal'));
+import SpringModal from '../../Components/spring-modal/spring-modal';
+import CenterModal from '../../Components/modal/center-modal';
+// const SpringModal = dynamic(() =>
+//   import('../../components/spring-modal/spring-modal')
+// );
+// const CenterModal = dynamic(() => import('../../components/modal/center-modal'));
 
 /**
  * Modal Provider Props
