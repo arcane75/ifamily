@@ -25,7 +25,7 @@ export const SearchBox = ({
 
   return (
     <StyledForm
-      //onSubmit={onEnter}
+      onSubmit={onEnter}
       className={className}
       boxShadow={shadow}
       minimal={minimal}

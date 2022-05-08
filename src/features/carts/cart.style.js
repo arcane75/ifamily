@@ -96,7 +96,6 @@ const ItemWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin-top: -90%;
-  
   overflow-x: hidden;
 `;
 
@@ -293,7 +292,6 @@ export const NoProductImg = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  margin-top: -70%;
   @media (max-width: 580px) {
     margin-top: 20px;
   }

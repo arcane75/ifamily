@@ -73,14 +73,14 @@ const CartPopUp = () => {
       <BoxedCartButton
         className='product-cart'
         itemCount={cartItemsCount}
-        // itemPostfix={
-        //   cartItemsCount > 1 ? (
-        //     <FormattedMessage id='cartItems' defaultMessage='items' />
-        //   ) : (
-        //     <FormattedMessage id='cartItem' defaultMessage='item' />
-        //   )
-        // }
-        price="2"
+        itemPostfix={
+          cartItemsCount > 1 ? (
+            <FormattedMessage id='cartItems' defaultMessage='items' />
+          ) : (
+            <FormattedMessage id='cartItem' defaultMessage='item' />
+          )
+        }
+        price={calculatePrice}
         pricePrefix={CURRENCY}
         onClick={toggleCart}
       />

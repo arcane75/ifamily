@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
-import RadioGroup from '../../components/radio-group/radio-group';
-import RadioCard from '../../components/radio-card/radio-card';
-import { CardHeader } from '../../components/card-header/card-header';
-import { ButtonGroup } from '../../components/button-group/button-group';
+import RadioGroup from '../../Components/radio-group/radio-group';
+import RadioCard from '../../Components/radio-card/radio-card';
+import { CardHeader } from '../../Components/card-header/card-header';
+import { ButtonGroup } from '../../Components/button-group/button-group';
 import { useAppState, useAppDispatch } from "../../contexts/app/app.provider";
 const Payment = ({
     flexStart = false,

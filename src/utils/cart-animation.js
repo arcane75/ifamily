@@ -1,4 +1,5 @@
 export const cartAnimation = (event) => {
+
   const getClosest = function (elem, selector) {
     for (; elem && elem !== document; elem = elem.parentNode) {
       if (elem.matches(selector)) return elem;
@@ -16,6 +17,7 @@ export const cartAnimation = (event) => {
   let cartLeft = viewCart.getBoundingClientRect().left;
   let cartTop = viewCart.getBoundingClientRect().top;
   let image = imgToDragImage.cloneNode(true);
+  console.log('image', image);
   image.style =
     'z-index: 11111; width: 100px;opacity:1; position:fixed; top:' +
     disTop +

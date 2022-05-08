@@ -35,14 +35,14 @@ export const Products = ({
   // };
 
   const renderCard = (product) => {
-    console.log('product id', product);
+    // console.log('product id', product);
     return (
       <GeneralCard
         product_title_eng={product.product_title_eng}
         product_title_beng={product.product_title_beng}
         product_id={product.product_id}
         // description={product.description}
-        image={IMAGE_URL + product.type_id + '/' + product.web_pic1}
+        image={IMAGE_URL + product?.type_id + '/' + product?.web_pic1}
         weight={product.size}
         currency={CURRENCY}
         price={product.sale_price}
@@ -77,7 +77,7 @@ export const Products = ({
       <Grid container spacing={2}>
         {productList.map((product, index) => (
           <Grid item xs={6} md={3} lg={3}
-            key={product.product_id}
+            key={product?.product_id}
             
           >
             <Fade

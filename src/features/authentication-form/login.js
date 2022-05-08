@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Router from 'next/router';
+// import Router from 'next/router';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import MaskedInput from 'react-text-mask';
@@ -18,10 +18,9 @@ import {
   InformationBox
 } from '../../features/checkouts/checkout-two/checkout-two.style';
 
-import { FieldWrapper } from '../../components/address-card/address-card.style';
-import TextField from '../../components/forms/text-field';
+import { FieldWrapper } from '../../Components/address-card/address-card.style';
+import TextField from '../../Components/forms/text-field';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { closeModal } from '@redq/reuse-modal';
 
 export default function SignInModal() {
   const dispatch = useAppDispatch();
@@ -121,7 +120,7 @@ export default function SignInModal() {
 
     const isConnectionAvailable = window.navigator.onLine;
     if (otp == tempOTP) {
-      closeModal();
+      // closeModal();
       if (isConnectionAvailable) {
         fetch(REGISTER_CUSTOMER_URL,
           {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Collapse, ListItemButton } from "@mui/material";
+import { Collapse, ListItem, ListItemButton } from "@mui/material";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -9,7 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { Outlet } from "react-router-dom";
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -17,14 +17,17 @@ import axios from "axios";
 import { useAppState, useAppDispatch } from "../../contexts/app/app.provider";
 import Products from "../../Components/product-grid/product-list/product-list";
 import CartPopUp from "../../features/carts/cart-popup";
-
+import { useParams } from 'react-router-dom';
 const drawerWidth = 350
 const Sidebar = (props) => {
     const [open, setOpen] = useState(false);
     const [clicked, setClicked] = useState(0);
+    const [click, setClick] = useState(false);
     const [sidebarItem, setSidebar] = useState([]);
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
+
+    const { subtype_id } = useParams();
 
     const activeStyle = ({ isActive }) => {
         return {
@@ -42,6 +45,7 @@ const Sidebar = (props) => {
         setClicked(!clicked)
 
     };
+    const isClicked = useAppState("click");
     const showProduct = useAppState("showProductInfo");
     console.log('show product', showProduct);
     const baseURL = `https://www.ifamilymart.com.bd/api/getWebsiteInfo/`;
@@ -57,7 +61,7 @@ const Sidebar = (props) => {
                 dispatch({ type: 'SAVE_CHARGE_INFO', payload: res.data.charge_info });
                 setSidebar(res.data.menu_item);
                 setClicked(res.data.menu_item.type_id)
-                console.log('data', res.data.menu_item);
+                console.log('menu_item data:', res.data.menu_item);
             })
             .catch((error) => {
                 alert(error);
@@ -66,18 +70,23 @@ const Sidebar = (props) => {
     }, []);
 
     const drawer = (
-        <Box sx={{ mt: 1 }}>
-            <List >
+        <Box sx={{
+            mt: 1,
+           
+        }} >
+            <List>
 
                 {
                     sidebarItem?.map((sideItem) =>
                         <Box >
 
-                            <ListItemButton onClick={() => {
+                            <ListItem button onClick={() => {
                                 setOpen(!open)
                                 setClicked(sideItem.type_id)
-
-                            }}>
+                            }}
+                                component={Link}
+                                to={`/category/${sideItem.type_id}`}
+                            >
                                 <ListItemAvatar sx={{ minWidth: '35px' }}>
                                     <Avatar
                                         alt={sideItem?.product_type}
@@ -85,7 +94,14 @@ const Sidebar = (props) => {
                                         sx={{ height: '20px', width: '20px', }}
                                     />
                                 </ListItemAvatar>
-                                <ListItemText primary={sideItem?.product_type} />
+                                <ListItemText
+                                    onClick={() => {
+                                        dispatch({ type: 'IS_CLICKED', payload: true });
+                                        setClick(isClicked)
+
+                                    }}
+                                    primary={sideItem?.product_type}
+                                />
                                 {
                                     sideItem?.sub_menu?.length > 0 ?
                                         <>
@@ -94,7 +110,7 @@ const Sidebar = (props) => {
                                         : null
 
                                 }
-                            </ListItemButton>
+                            </ListItem>
                             <Collapse
 
                                 in={open} timeout="auto" unmountOnExit>
@@ -104,9 +120,19 @@ const Sidebar = (props) => {
                                             {
                                                 clicked === sideItem.type_id ?
                                                     <List component="div" disablePadding>
-                                                        <ListItemButton sx={{ pl: 4 }}>
+                                                        <ListItem
+                                                            onClick={() => {
+
+                                                                setClick(!click)
+
+                                                            }}
+                                                            button
+                                                            sx={{ pl: 4 }}
+                                                            component={Link}
+                                                            to={`/subcategory/${subItem.subtype_id}`}
+                                                        >
                                                             <ListItemText primary={subItem?.subproduct_type} />
-                                                        </ListItemButton>
+                                                        </ListItem>
                                                     </List> : null
                                             }
                                         </>
@@ -149,7 +175,7 @@ const Sidebar = (props) => {
                 component="nav"
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
-               
+
             >
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
@@ -168,7 +194,7 @@ const Sidebar = (props) => {
                         },
 
                     }}
-                    
+
                 >
                     {drawer}
                 </Drawer>
@@ -179,11 +205,21 @@ const Sidebar = (props) => {
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: drawerWidth,
-                            marginTop:'90px',
-                        },
+                            marginTop: '90px',
+                        }
+                        ,
 
                     }}
-                   
+
+                    // style={{
+                    //     "& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper": {
+                    //         '::-webkit-scrollbar': {
+                    //             // width: '1px !important',
+                    //             overflowY: 'hidden'
+                    //         },
+                    //     }
+
+                    // }}
                     open
                 >
                     {drawer}
@@ -202,15 +238,15 @@ const Sidebar = (props) => {
 
                 }}
             >
-                {/* <Outlet></Outlet> */}
                 {
-                    <>
+                    isClicked ?
+                        <Outlet></Outlet>
+                        :
                         <Products
                             productList={showProduct}
                         />
-                        <CartPopUp />
-                    </>
                 }
+
             </Box>
         </Box>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthMenu from '../auth-menu';
 // import dynamic from 'next/dynamic';
 import { RightMenuBox } from './right-menu.style';
 // const AuthMenu = dynamic(() => import('../auth-menu'), { ssr: false });
@@ -27,12 +28,12 @@ export const RightMenu = ({
       /> */}
       {/* <LanguageSwitcher /> */}
 
-      {/* <AuthMenu
+      <AuthMenu
         avatar={avatar}
         onJoin={onJoin}
         onLogout={onLogout}
         isAuthenticated={isAuthenticated}
-      /> */}
+      />
     </RightMenuBox>
   );
 };

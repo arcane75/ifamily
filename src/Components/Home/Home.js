@@ -13,7 +13,6 @@ const Home = () => {
         <div>
 
             <Header />
-
             <Sidebar />
 
 
@@ -21,7 +20,7 @@ const Home = () => {
             {/* <Products
                 productList={showProduct}
             /> */}
-            {/* <CartPopUp />  */}
+            <CartPopUp /> 
         </div>
     );
 };

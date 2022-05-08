@@ -29,7 +29,7 @@ import { CartIcon } from '../../../assets/icons/CartIcon';
 import { CURRENCY } from '../../../utils/constant';
 
 import ReadMore from '../../../Components/truncate/truncate';
-
+import CloseIcon from '@mui/icons-material/Close';
 import { Counter } from '../../../Components/counter/counter';
 import { FormattedMessage } from 'react-intl';
 import LogoImage from '../../../assets/images/Stock-Out-1.png';
@@ -41,7 +41,7 @@ const ProductModal = ({ open, handleOpen, handleClose, index, data }) => {
 
     let URL1 = IMAGE_URL + data.type_id + '/' + data.product_pic1;
     let gallery = [];
-    console.log('gallery', gallery)
+    // console.log('gallery', gallery)
     gallery.push({
         url: URL1
     });
@@ -73,8 +73,11 @@ const ProductModal = ({ open, handleOpen, handleClose, index, data }) => {
         transform: 'translate(-50%, -50%)',
         // bgcolor: 'background.paper',
         boxShadow: 24,
+        '::-webkit-scrollbar': {
+            width: '1px',
+        },
         // p: 4,
-        overflowY: { sm: 'scroll', md: 'hidden' },
+        // overflowY: { sm: 'scroll', md: 'scroll' },
         overflowX: 'hidden',
         width: { xs: '80%', lg: '70%', xl: '50%', },
         height: { xs: '80%', md: '90%', xl: 'auto' },
@@ -90,6 +93,11 @@ const ProductModal = ({ open, handleOpen, handleClose, index, data }) => {
         e.stopPropagation();
         removeItem(data);
     };
+
+    const handleCloseModal = () => {
+        handleClose();
+
+    };
     return (
         <div>
             <Modal
@@ -99,6 +107,10 @@ const ProductModal = ({ open, handleOpen, handleClose, index, data }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+                    <Button onClick={handleCloseModal}
+                        sx={{ ml: -1, backgroundColor: 'white', }}><CloseIcon sx={{ boxShadow: 3, fontSize: 26, p: 1, borderRadius: '50%', backgroundColor: 'white', color: 'black' }} /></Button>
+
+
                     <QuickViewWrapper className='quick-view-mobile-wrapper'>
                         <ProductDetailsWrapper className='product-card' dir='ltr'>
                             <ProductPreview>

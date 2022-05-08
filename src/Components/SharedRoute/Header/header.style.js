@@ -45,10 +45,10 @@ const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  z-index: 9999;
+  z-index: +9;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 96%;
   background-color: ${themeGet('colors.white', '#ffffff')};
   box-shadow: ${themeGet('shadows.header', '0 1px 2px rgba(0, 0, 0, 0.06)')};
   transition: all 0.3s ease;

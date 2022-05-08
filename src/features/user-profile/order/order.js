@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useAppState, useAppDispatch } from "../../../contexts/app/app.provider"
 import { MY_ORDER_URL, API_KEY, IMAGE_URL } from '../../../common/baseUrl';
-import { Scrollbar } from '../../../components/scrollbar/scrollbar';
+import { Scrollbar } from '../../../Components/scrollbar/scrollbar';
 import {
   DesktopView,
   MobileView,
@@ -81,14 +81,14 @@ const OrdersContent = () => {
   const [active, setActive] = useState("");
 
   const [targetRef, size] = useComponentSize();
-  const orderListHeight = size.height - 79;
+  // const orderListHeight = size.height - 79;
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     let CustInfo = JSON.parse(localStorage.getItem('user'));
     const url = MY_ORDER_URL + CustInfo.mobile + '/' + API_KEY + '/' + 'accesskey';
-  
-    scroll();
+
+    // scroll();
     axios.get(url)
       .then((res) => {
         dispatch({ type: 'SAVE_ORDER_INFO', payload: res.data.orderInfo });
@@ -100,13 +100,13 @@ const OrdersContent = () => {
         //
       })
       .catch((error) => {
-     
+
         setError(true)
         setLoading(true);
       })
   }, []);
   const ordersData = useAppState("orderInfo");
-
+  console.log('ordersData', ordersData)
 
   if (loading) {
     return <div>loading...</div>;
@@ -123,7 +123,7 @@ const OrdersContent = () => {
       .then((responseJson) => {
         setVisible(true);
         setOrder(responseJson.orderDetails);
-       
+
       })
       .catch((error) => {
         setVisible(false);
@@ -141,7 +141,7 @@ const OrdersContent = () => {
       .then((responseJson) => {
         setVisible(true);
         setOrder(responseJson.orderDetails);
-       
+
       })
       .catch((error) => {
         setVisible(false);
@@ -152,15 +152,15 @@ const OrdersContent = () => {
   return (
     <OrderBox>
       <DesktopView>
-        <OrderListWrapper style={{ height: size.height }}>
+        <OrderListWrapper>
           <Title style={{ padding: '0 20px' }}>
             <FormattedMessage
               id='intlOrderPageTitle'
               defaultMessage='My Order'
             />
           </Title>
-          <Scrollbar className='order-scrollbar'>
-            <OrderList>
+   
+            <OrderList> 
               {ordersData.length !== 0 ? (
                 ordersData.map((order) => (
                   <OrderCard
@@ -177,15 +177,15 @@ const OrdersContent = () => {
                   />
                 ))
               ) : (
-                  <NoOrderFound>
-                    <FormattedMessage
-                      id='intlNoOrderFound'
-                      defaultMessage='No order found'
-                    />
-                  </NoOrderFound>
-                )}
+                <NoOrderFound>
+                  <FormattedMessage
+                    id='intlNoOrderFound'
+                    defaultMessage='No order found'
+                  />
+                </NoOrderFound>
+              )}
             </OrderList>
-          </Scrollbar>
+        
         </OrderListWrapper>
 
         <OrderDetailsWrapper ref={targetRef}>
@@ -210,7 +210,6 @@ const OrdersContent = () => {
           )}
         </OrderDetailsWrapper>
       </DesktopView>
-
       <MobileView>
         <OrderList>
           <OrderCardMobile

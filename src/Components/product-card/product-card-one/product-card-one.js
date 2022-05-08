@@ -100,7 +100,7 @@ const ProductCard = ({
   };
   const handleQuickViewModal = (e) => {
     e.stopPropagation();
-    console.log('clicked modal',data.product_id)
+    console.log('clicked modal', data.product_id)
     // const { pathname, query } = navigate;
     // const as = `/product/${data.product_id}`;
     // // const as = `/`;
@@ -139,59 +139,59 @@ const ProductCard = ({
   const [product, setProduct] = useState({});
   // open modal
   const handleOpenModal = (product_id, data) => {
-      setOpen(true);
-      // setProduct(data);
-      // setIndex(product_id);
-      console.log('clicked modal',product_id)
+    setOpen(true);
+    // setProduct(data);
+    // setIndex(product_id);
+    console.log('clicked modal', product_id)
   };
- // close modal
- const handleClose = () => setOpen(false);
+  // close modal
+  const handleClose = () => setOpen(false);
 
   return (
     <>
-      {/* <ProductCardWrapper onClick={handleQuickViewModal} className="product-card">
-      <ProductImageWrapper>
-        <Image
-          url={image}
-          className="product-image"
-          style={{ position: 'relative' }}
-          alt={product_title_eng}
-        />
-  
-      </ProductImageWrapper>
-      <ProductInfo>
-        <h3 className="product-title-eng">{product_title_eng}</h3>
-        <h3 className="product-title-beng">{product_title_beng}</h3>
-        <span className="product-weight">{weight}</span>
-        <div className="product-meta">
-          <div className="productPriceWrapper">
-            {data.max_retail_price > 0 ? (
-              <span className="discountedPrice">
-                {currency}
-                {data.max_retail_price}
-              </span>
-            ) : null}
+      {/* <ProductCardWrapper onClick={() => handleOpenModal()} className="product-card">
+        <ProductImageWrapper>
+          <Image
+            url={image}
+            className="product-image"
+            style={{ position: 'relative' }}
+            alt={product_title_eng}
+          />
 
-            <span className="product-price">
-              {currency}
-              {price}
-            </span>
-          </div>
-          {data.is_available > 0 ? (
-            <>
-              {!isInCart(data.product_id) ? (
-                <Button
-                  className="cart-button"
-                  variant="secondary"
-                  borderRadius={100}
-                  onClick={handleAddClick}
-                >
-                  <CartIcon mr={2} />
-                  <ButtonText>
-                    <FormattedMessage id="addCartButton" defaultMessage="Add" />
-                  </ButtonText>
-                </Button>
-              ) : (
+        </ProductImageWrapper>
+        <ProductInfo>
+          <h3 className="product-title-eng">{product_title_eng}</h3>
+          <h3 className="product-title-beng">{product_title_beng}</h3>
+          <span className="product-weight">{weight}</span>
+          <div className="product-meta">
+            <div className="productPriceWrapper">
+              {data.max_retail_price > 0 ? (
+                <span className="discountedPrice">
+                  {currency}
+                  {data.max_retail_price}
+                </span>
+              ) : null}
+
+              <span className="product-price">
+                {currency}
+                {price}
+              </span>
+            </div>
+            {data.is_available > 0 ? (
+              <>
+                {!isInCart(data.product_id) ? (
+                  <Button
+                    className="cart-button"
+                    variant="secondary"
+                    borderRadius={100}
+                    onClick={handleAddClick}
+                  >
+                    <CartIcon mr={2} />
+                    <ButtonText>
+                      <FormattedMessage id="addCartButton" defaultMessage="Add" />
+                    </ButtonText>
+                  </Button>
+                ) : (
                   <Counter
                     maxAllowed={data.max_allowed}
                     value={getItem(data.product_id).quantity}
@@ -200,93 +200,107 @@ const ProductCard = ({
                     className="card-counter"
                   />
                 )}
-            </>
-          ) : (
+              </>
+            ) : (
               <StockOut
                 imageUrl={LogoImage}
                 alt={'out Stock'}
               />
             )}
 
-        </div>
-      </ProductInfo>
-    </ProductCardWrapper> */}
+          </div>
+        </ProductInfo>
+      </ProductCardWrapper> */}
 
-      <Card onClick={() => handleOpenModal()} sx={{ maxWidth: 345, height: 'auto' }}>
-        <CardMedia
-          component="img"
-          alt={product_title_eng}
-          height="240"
-          image={image}
-        />
+      <ProductCardWrapper className="product-card">
+        <Card onClick={() => handleOpenModal()} sx={{ maxWidth: 345, height: 'auto' }}>
+          {/* <CardMedia
+            className="product-image"
+            component="img"
+            alt={product_title_eng}
+            height="240"
+            image={image}
+          /> */}
 
-        <CardContent>
-          <Typography style={textStyle} gutterBottom variant="h6" component="div">
-            {product_title_eng}
-          </Typography>
-          <Typography style={textStyle} gutterBottom variant="h6" component="div">
-            {product_title_beng}
-          </Typography>
-          <span style={textStyle}>{weight}</span>
-        </CardContent>
-        <CardActions>
-          <Grid container spacing={2}>
-            <Grid item md={6} sx={{ display: 'flex', flexDirection: 'column', }} >
-              {data.max_retail_price > 0 ? (
-                <span style={{ textDecoration: 'line-through' }}>
+          <ProductImageWrapper>
+            <Image
+              url={image}
+              className="product-image"
+              style={{ position: 'relative' }}
+              alt={product_title_eng}
+            />
+
+          </ProductImageWrapper>
+
+          <CardContent>
+            <Typography style={textStyle} gutterBottom variant="h6" component="div">
+              {product_title_eng}
+            </Typography>
+            <Typography style={textStyle} gutterBottom variant="h6" component="div">
+              {product_title_beng}
+            </Typography>
+            <span style={textStyle}>{weight}</span>
+          </CardContent>
+          <CardActions>
+            <Grid container spacing={2}>
+              <Grid item md={6} sx={{ display: 'flex', flexDirection: 'column', }} >
+                {data.max_retail_price > 0 ? (
+                  <span style={{ textDecoration: 'line-through' }}>
+                    {currency}
+                    {data.max_retail_price}
+                  </span>
+                ) : null}
+                <span className="product-price">
                   {currency}
-                  {data.max_retail_price}
+                  {price}
                 </span>
-              ) : null}
-              <span className="product-price">
-                {currency}
-                {price}
-              </span>
+              </Grid>
+              <Grid item md={6}>
+                {data.is_available > 0 ? (
+                  <>
+                    {!isInCart(data.product_id) ? (
+                      <Button
+                        className="cart-button"
+                        variant="secondary"
+                        borderRadius={100}
+                        onClick={handleAddClick}
+                      >
+                        <CartIcon mr={2} />
+                        <ButtonText>
+                          <FormattedMessage id="addCartButton" defaultMessage="Add" />
+                        </ButtonText>
+                      </Button>
+                    ) : (
+                      <Counter
+                        maxAllowed={data.max_allowed}
+                        value={getItem(data.product_id).quantity}
+                        onDecrement={handleRemoveClick}
+                        onIncrement={handleAddClick}
+                        className="card-counter"
+                      />
+                    )}
+                  </>
+                ) : (
+                  <StockOut
+                    imageUrl={LogoImage}
+                    alt={'out Stock'}
+                  />
+                )}
+              </Grid>
             </Grid>
-            <Grid item md={6}>
-              {data.is_available > 0 ? (
-                <>
-                  {!isInCart(data.product_id) ? (
-                    <Button
-                      className="cart-button"
-                      variant="secondary"
-                      borderRadius={100}
-                      onClick={handleAddClick}
-                    >
-                      <CartIcon mr={2} />
-                      <ButtonText>
-                        <FormattedMessage id="addCartButton" defaultMessage="Add" />
-                      </ButtonText>
-                    </Button>
-                  ) : (
-                    <Counter
-                      maxAllowed={data.max_allowed}
-                      value={getItem(data.product_id).quantity}
-                      onDecrement={handleRemoveClick}
-                      onIncrement={handleAddClick}
-                      className="card-counter"
-                    />
-                  )}
-                </>
-              ) : (
-                <StockOut
-                  imageUrl={LogoImage}
-                  alt={'out Stock'}
-                />
-              )}
-            </Grid>
-          </Grid>
-        </CardActions>
-      </Card>
+          </CardActions>
+        </Card>
+      </ProductCardWrapper>
 
-       {/* Modal */}
-       <ProductModal 
-       open={open}
-       index={product_id}
-       handleClose={handleClose}
-       handleOpen={handleOpenModal}
-       data={data}
-       />
+
+      {/* Modal */}
+      <ProductModal
+        open={open}
+        index={product_id}
+        handleClose={handleClose}
+        handleOpen={handleOpenModal}
+        data={data}
+      />
     </>
   );
 };

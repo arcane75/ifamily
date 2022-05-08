@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
-import RadioGroup from '../../components/radio-group/radio-group';
-import RadioCard from '../../components/radio-card/radio-card';
-import { Button } from '../../components/button/button';
-import UpdateAddress from '../../components/address-card/address-card';
-import { handleModal } from '../../features/checkouts/checkout-modal';
+// import RadioGroup from '../../components/radio-group/radio-group';
+// import RadioCard from '../../components/radio-card/radio-card';
+// import { Button } from '../../components/button/button';
+import UpdateAddress from '../../Components/address-card/address-card';
+// import { handleModal } from '../../features/checkouts/checkout-modal';
 import { ProfileContext } from '../../contexts/profile/profile.context';
 // import { useMutation } from '@apollo/client';
 // import { DELETE_ADDRESS } from 'graphql/mutation/address';
-import { CardHeader } from '../../components/card-header/card-header';
-import { ButtonGroup } from '../../components/button-group/button-group';
-import { Box } from '../../components/box';
-import { Plus } from '../../assets/icons/PlusMinus';
+import { CardHeader } from '../../Components/card-header/card-header';
+import { ButtonGroup } from '../../Components/button-group/button-group';
+// import { Box } from '../../components/box';
+// import { Plus } from '../../assets/icons/PlusMinus';
 
 // interface Props {
 //   increment?: boolean;

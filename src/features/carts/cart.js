@@ -27,6 +27,8 @@ import { useAppState, useAppDispatch } from "../../contexts/app/app.provider";
 import { Scrollbar } from '../../Components/scrollbar/scrollbar';
 import { useCart } from '../../contexts/cart/use-cart';
 import { CartItem } from '../../Components/cart-item/cart-item';
+import { useNavigate } from "react-router-dom";
+
 // import Coupon from 'features/coupon/coupon';
 
 // type CartPropsType = {
@@ -52,6 +54,13 @@ const Cart = ({
     calculatePrice,
   } = useCart();
   const [hasCoupon, setCoupon] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'IS_CLICKED', payload: true });
+    navigate(`/checkout`);
+  }
   // const { isRtl } = useLocale();
   const deliveryChargeMSG = useAppState("deliveryChargeMSG");
   const mimimunAmount = useAppState("mimimunAmount");
@@ -67,8 +76,8 @@ const Cart = ({
             {cartItemsCount > 1 ? (
               <FormattedMessage id='cartItems' defaultMessage='items' />
             ) : (
-                <FormattedMessage id='cartItem' defaultMessage='item' />
-              )}
+              <FormattedMessage id='cartItem' defaultMessage='item' />
+            )}
           </span>
         </PopupItemCount>
         <Button
@@ -94,18 +103,18 @@ const Cart = ({
               />
             ))
           ) : (
-              <>
-                <NoProductImg>
-                  <NoCartBag />
-                </NoProductImg>
-                <NoProductMsg>
-                  <FormattedMessage
-                    id='noProductFound'
-                    defaultMessage='No products found'
-                  />
-                </NoProductMsg>
-              </>
-            )}
+            <>
+              <NoProductImg>
+                <NoCartBag />
+              </NoProductImg>
+              <NoProductMsg>
+                <FormattedMessage
+                  id='noProductFound'
+                  defaultMessage='No products found'
+                />
+              </NoProductMsg>
+            </>
+          )}
         </ItemWrapper>
       </Scrollbar>
 
@@ -153,34 +162,34 @@ const Cart = ({
 
         {cartItemsCount !== 0 ? (
           // <Link href='/checkout'>
-            <CheckoutButton onClick={onCloseBtnClick}>
-              <>
-                <Title>
-                  <FormattedMessage
-                    id='nav.checkout'
-                    defaultMessage='Checkout'
-                  />
-                </Title>
-                <PriceBox>
-                  {CURRENCY}
-                  {calculatePrice()}
-                </PriceBox>
-              </>
-            </CheckoutButton>
+          <CheckoutButton onClick={handleCheckout}>
+            <>
+              <Title>
+                <FormattedMessage
+                  id='nav.checkout'
+                  defaultMessage='Checkout'
+                />
+              </Title>
+              <PriceBox>
+                {CURRENCY}
+                {calculatePrice()}
+              </PriceBox>
+            </>
+          </CheckoutButton>
           // </Link>
         ) : (
-            <CheckoutButton>
-              <>
-                <Title>
-                  <FormattedMessage id='nav.checkout' defaultMessage='Checkout' />
-                </Title>
-                <PriceBox>
-                  {CURRENCY}
-                  {calculatePrice()}
-                </PriceBox>
-              </>
-            </CheckoutButton>
-          )}
+          <CheckoutButton onClick={handleCheckout}>
+            <>
+              <Title>
+                <FormattedMessage id='nav.checkout' defaultMessage='Checkout' />
+              </Title>
+              <PriceBox>
+                {CURRENCY}
+                {calculatePrice()}
+              </PriceBox>
+            </>
+          </CheckoutButton>
+        )}
       </CheckoutButtonWrapper>
     </CartPopupBody>
   );

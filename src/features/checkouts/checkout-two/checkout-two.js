@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+// import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import MaskedInput from 'react-text-mask';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { SEND_OTP_URL, REGISTER_CUSTOMER_URL, PLACE_ORDER_URL, API_KEY } from '../../../common/baseUrl';
-import { FieldWrapper, Heading } from '../../../components/address-card/address-card.style';
-import TextField from '../../../components/forms/text-field';
-import { Button } from '../../../components/button/button';
+import { FieldWrapper, Heading } from '../../../Components/address-card/address-card.style';
+import TextField from '../../../Components/forms/text-field';
+import { Button } from '../../../Components/button/button';
 import { CURRENCY } from '../../../utils/constant';
-import { Scrollbar } from '../../../components/scrollbar/scrollbar';
+import { Scrollbar } from '../../../Components/scrollbar/scrollbar';
 import Payment from '../../../features/payment/payment';
 import CheckoutWrapper, {
   CheckoutContainer,
@@ -40,7 +40,7 @@ import CheckoutWrapper, {
   Small,
   NoProductMsg,
   NoProductImg,
-} from './checkout-two.style';
+} from './checkout-two.style.js';
 
 import { NoCartBag } from '../../../assets/icons/NoCartBag';
 
@@ -49,12 +49,13 @@ import { ProfileContext } from '../../../contexts/profile/profile.context';
 import { FormattedMessage } from 'react-intl';
 import { useCart } from '../../../contexts/cart/use-cart';
 // import { useLocale } from 'contexts/language/language.provider';
-import { useWindowSize } from '../../../utils/useWindowSize';
+// import { useWindowSize } from '../../utils/useWindowSize';
 // import Coupon from 'features/coupon/coupon';
 import Address from '../../../features/address/address';
 // import Schedules from 'features/schedule/schedule';
-import { isLogin } from "../../../store/actions/webDataInfo";
+// import { isLogin } from "../../../store/actions/webDataInfo";
 import { useAppState, useAppDispatch } from "../../../contexts/app/app.provider";
+import { useNavigate } from 'react-router-dom';
 
 const OrderItem = ({ product }) => {
   const { id, quantity, product_title_eng, name, unit, sale_price, salePrice } = product;
@@ -105,6 +106,7 @@ const StyledInput = styled.input`
 const CheckoutWithSidebar = ({ token, deviceType }) => {
   const [hasCoupon, setHasCoupon] = useState(false);
   const { state } = useContext(ProfileContext);
+  const navigate = useNavigate();
   // const { isRtl } = useLocale();
   const {
     items,
@@ -138,7 +140,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
   const [tempOTP, setTempOTP] = useState('');
   const [isCustInfoChange, setCustInfoChange] = useState('0');
 
-  const size = useWindowSize();
+  // const size = useWindowSize();
 
   const isClickSearchButton = useAppState("isClickOnSearch");
 
@@ -320,6 +322,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
   const handlePlaceOrder = async () => {
     const isConnectionAvailable = window.navigator.onLine;
     dispatch({ type: 'IS_LOGIN', payload: true });
+    dispatch({ type: 'IS_CLICKED', payload: true });
     if (isConnectionAvailable) {
       fetch(PLACE_ORDER_URL,
         {
@@ -348,7 +351,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
         .then((responseJson) => {
           storeData();
           clearCart();
-          Router.push('/order');
+          navigate('/order');
         }).catch((error) => {
 
         });
@@ -538,9 +541,9 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
             )}
           </CheckoutInformation>
 
-          <CartWrapper>
+          {/* <CartWrapper>
             <Sticky
-              enabled={size.width >= 768 ? true : false}
+              // enabled={size.width >= 768 ? true : false}
               top={120}
               innerZ={999}
             >
@@ -598,7 +601,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
                     <Text>{CURRENCY} {parseFloat(deliveryCharge).toFixed(2)}</Text>
                   </TextWrapper>
 
-                  {/* <TextWrapper>
+                  <TextWrapper>
                     <Text>
                       <FormattedMessage
                         id='discountText'
@@ -609,7 +612,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
                       {CURRENCY}
                       {calculateDiscount()}
                     </Text>
-                  </TextWrapper> */}
+                  </TextWrapper>
 
                   <TextWrapper style={{ marginTop: 20 }}>
                     <Bold>
@@ -630,7 +633,7 @@ const CheckoutWithSidebar = ({ token, deviceType }) => {
                 </CalculationWrapper>
               </OrderInfo>
             </Sticky>
-          </CartWrapper>
+          </CartWrapper> */}
         </CheckoutContainer>
       </CheckoutWrapper>
     </form>

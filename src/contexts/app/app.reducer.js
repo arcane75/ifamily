@@ -4,6 +4,7 @@ export const initialState = {
   showProductInfo: [],
   sidebarData: [],
   orderInfo: [],
+  searchProduct: [],
   isSidebarOpen: "0",
   deliveryChargeMax: "0",
   deliveryChargeMin: "0",
@@ -22,6 +23,7 @@ export const initialState = {
   isShowingSingleProduct: '0',
   paymentOption: '1',
   isCheckOut: false,
+  click: false,
 };
 
 
@@ -34,6 +36,18 @@ export function appReducer(state, action) {
         allProductInfo: action.payload,
         showProductInfo: action.payload.filter(sp => sp.is_special_offer === '1'),
       };
+      case 'IS_CLICKED':
+      return {
+        ...state,
+        click: true
+        
+      };
+      case 'SAVE_SEARCH_DATA':
+        return {
+          ...state,
+          searchProduct: action.payload,
+        };
+      
     case 'SAVE_SIDEBAR_DATA':
       return {
         ...state,

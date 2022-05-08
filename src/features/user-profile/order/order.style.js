@@ -49,7 +49,7 @@ const OrderListWrapper = styled.div`
 `;
 
 const OrderList = styled.div`
-  width: 100%;
+  // width: 100%;
   padding: 0 20px 20px;
 
   @media (max-width: 767px) {

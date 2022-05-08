@@ -10,6 +10,12 @@ import { CartProvider } from '../src/contexts/cart/use-cart';
 import { useMedia } from '../src/utils/use-media';
 import { ModalProvider } from "./contexts/modal/modal.provider";
 import { Modal } from "@redq/reuse-modal";
+import SubCategory from "./pages/SubCategory";
+import Category from "./pages/Category";
+import SearchProduct from "./pages/SearchProduct";
+import CheckoutWithSidebar from "./features/checkouts/checkout-two/checkout-two";
+import OrdersContent from "./features/user-profile/order/order";
+
 // External CSS import here
 
 
@@ -20,7 +26,7 @@ function App() {
       <AuthProvider>
         <AppProvider>
           <ModalProvider>
-            
+
             <CartProvider>
               <IntlProvider locale="en">
 
@@ -33,7 +39,25 @@ function App() {
 
                 <BrowserRouter>
                   <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />}>
+
+                      <Route
+                        path="/category/:type_id"
+                        element={<Category />}
+                      />
+
+
+                      <Route
+                        path="/subcategory/:subtype_id"
+                        element={<SubCategory />}
+                      />
+                      <Route path="/search" element={<SearchProduct />} />
+
+                      <Route path="/checkout" element={<CheckoutWithSidebar />} />
+                      <Route path="/order" element={<OrdersContent />} />
+
+                    </Route>
+
                   </Routes>
                 </BrowserRouter>
 

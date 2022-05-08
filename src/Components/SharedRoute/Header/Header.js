@@ -1,7 +1,6 @@
-import React from 'react';
-// import { openModal } from '@redq/reuse-modal';
+import React, {useContext} from 'react';
+import { openModal } from '@redq/reuse-modal';
 import { AuthContext } from '../../../contexts/auth/auth.context';
-// import AuthenticationForm from '../../features/authentication-form';
 import { RightMenu } from './menu/right-menu/right-menu';
 import { LeftMenu } from './menu/left-menu/left-menu';
 import HeaderWrapper from './header.style';
@@ -10,22 +9,27 @@ import LogoImage from '../../../assets/images/Logo-shop.png';
 // import { isCategoryPage } from '../is-home-page';
 import Search from '../../../features/search/search';
 import { useAppState } from "../../../contexts/app/app.provider";
+import PRODUCT_SEARCH_URL from '../../../common/baseUrl';
+import { useNavigate } from "react-router-dom";
+import AuthenticationForm from '../../../features/authentication-form';
 
 const Header = ({ className }) => {
+  const navigate = useNavigate();
+  const { authDispatch } = useContext(AuthContext);
   const isSingleProduct = useAppState("isShowingSingleProduct");
   // const { pathname, query } = useRouter();
   const handleLogout = () => {
     if (typeof window !== 'undefined') {
-      //   localStorage.removeItem('access_token');
-      //   authDispatch({ type: 'SIGN_OUT' });
-      //   Router.push('/');
+        localStorage.removeItem('access_token');
+        authDispatch({ type: 'SIGN_OUT' });
+        navigate(`/`);
     }
   };
 
   const handleJoin = () => {
-    // authDispatch({
-    //   type: 'SIGNIN',
-    // });
+    authDispatch({
+      type: 'SIGNIN',
+    });
 
     // openModal({
     //   show: true,

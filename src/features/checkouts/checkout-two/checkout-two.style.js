@@ -267,6 +267,7 @@ export const CartWrapper = styled.div`
 
 export const OrderInfo = styled.div`
   width: 100%;
+  
   display: flex;
   flex-direction: column;
 
@@ -288,6 +289,7 @@ export const ItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 15px;
+  margin-top:-120%;
 `;
 
 export const CalculationWrapper = styled.div`
