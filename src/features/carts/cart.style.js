@@ -25,6 +25,29 @@ const CartPopupBody = styled.div`
   }
 `;
 
+const CartMobileBody = styled.div`
+  // height: 100vh;
+  // width: 90%;
+  display: flex;
+  flex-direction: column;
+  border-radius: ${themeGet('radii.base', '6px')};
+  background-color: ${themeGet('colors.white', '#ffffff')};
+  box-sizing: content-box;
+  
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  .cart-scrollbar {
+    height: 100%;
+    max-height: calc(100vh - 245px);
+
+    @media (max-width: 767px) {
+      max-height: 330px;
+    }
+  }
+`;
 const PopupHeader = styled.div`
   padding: 15px 25px;
   background-color: ${themeGet('colors.white', '#ffffff')};
@@ -96,6 +119,12 @@ const ItemWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin-top: -90%;
+  overflow-x: hidden;
+`;
+const ItemWrapperMobile = styled.div`
+  width: 100%;
+  height: 100%;
+  // margin-top: -10%;
   overflow-x: hidden;
 `;
 
@@ -406,4 +435,6 @@ export {
   ItemWrapper,
   CouponBoxWrapper,
   CouponCode,
+  CartMobileBody,
+  ItemWrapperMobile
 };

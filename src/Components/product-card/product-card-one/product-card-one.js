@@ -149,7 +149,7 @@ const ProductCard = ({
 
   return (
     <>
-      {/* <ProductCardWrapper onClick={() => handleOpenModal()} className="product-card">
+      <ProductCardWrapper onClick={() => handleOpenModal()} className="product-card">
         <ProductImageWrapper>
           <Image
             url={image}
@@ -210,18 +210,11 @@ const ProductCard = ({
 
           </div>
         </ProductInfo>
-      </ProductCardWrapper> */}
+      </ProductCardWrapper>
 
-      <ProductCardWrapper className="product-card">
+      {/* <ProductCardWrapper className="product-card">
         <Card onClick={() => handleOpenModal()} sx={{ maxWidth: 345, height: 'auto' }}>
-          {/* <CardMedia
-            className="product-image"
-            component="img"
-            alt={product_title_eng}
-            height="240"
-            image={image}
-          /> */}
-
+        
           <ProductImageWrapper>
             <Image
               url={image}
@@ -290,7 +283,7 @@ const ProductCard = ({
             </Grid>
           </CardActions>
         </Card>
-      </ProductCardWrapper>
+      </ProductCardWrapper> */}
 
 
       {/* Modal */}

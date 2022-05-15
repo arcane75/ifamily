@@ -16,6 +16,7 @@
     "axios": "^0.26.1",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.1",
+    "localforage": "^1.9.0",
     "moment": "^2.29.3",
     "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.3",

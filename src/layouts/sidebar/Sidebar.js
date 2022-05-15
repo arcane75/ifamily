@@ -27,7 +27,6 @@ const Sidebar = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
 
-    const { subtype_id } = useParams();
 
     const activeStyle = ({ isActive }) => {
         return {
@@ -46,6 +45,7 @@ const Sidebar = (props) => {
 
     };
     const isClicked = useAppState("click");
+    const mobile = useAppState("isMobile");
     const showProduct = useAppState("showProductInfo");
     console.log('show product', showProduct);
     const baseURL = `https://www.ifamilymart.com.bd/api/getWebsiteInfo/`;
@@ -72,7 +72,7 @@ const Sidebar = (props) => {
     const drawer = (
         <Box sx={{
             mt: 1,
-           
+
         }} >
             <List>
 
@@ -151,16 +151,22 @@ const Sidebar = (props) => {
 
     const container =
         window !== undefined ? () => window().document.body : undefined;
-    const navStyle = {
-        backgroundColor: "white",
-        color: "black",
-        boxShadow:
-            " 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
-    };
+ 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box
+            sx={{
+                display: {
+                    sm: {
+                        display: 'flex',
+                        flexDirection: 'column',
+                    },
+                    lg: 'flex',
+                    md: 'flex',
+                }
+            
+            }}>
 
-            <Toolbar sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Toolbar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -230,8 +236,8 @@ const Sidebar = (props) => {
                 sx={{
                     flexGrow: 1,
                     pt: 3,
-                    pr: 3,
-                    mt: 10,
+                    pr: {md: 3, sm: 0, lg: 3},
+                    mt: {md: 10, sm: 0, lg: 10},
                     width: {
                         sm: `calc(100% - ${drawerWidth}px)`,
                     },

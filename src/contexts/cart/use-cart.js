@@ -1,6 +1,6 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import { reducer, cartItemsTotalPrice } from './cart.reducer';
-// import { useStorage } from '../../utils/use-storage';
+import { useStorage } from '../../utils/use-storage';
 const CartContext = createContext({});
 const INITIAL_STATE = {
   isOpen: false,
@@ -116,7 +116,7 @@ export const CartProvider = ({ children }) => {
     getDiscount,
     toggleRestaurant,
   } = useCartActions();
-//   const { rehydrated, error } = useStorage(state, rehydrateLocalState);
+  const { rehydrated, error } = useStorage(state, rehydrateLocalState);
 
   return (
     <CartContext.Provider

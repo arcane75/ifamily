@@ -31,6 +31,7 @@ const AuthMenu = () => {
     }
   }, []);
   const handleSubmit = async () => {
+    dispatch({ type: 'IS_CLICKED', payload: true });
     navigate('/order');
   };
 

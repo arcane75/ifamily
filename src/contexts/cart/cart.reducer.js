@@ -20,10 +20,14 @@ const addItemToCart = (state, action) => {
   const existingCartItemIndex = state.items.findIndex(
     (item) => item.product_id === action.payload.product_id
   );
-
+// console.log('action.payload.quantity',action.payload.quantity);
   if (existingCartItemIndex > -1) {
     const newState = [...state.items];
+    console.log('newState',newState);
+    console.log('before',newState[existingCartItemIndex].quantity);
+    
     newState[existingCartItemIndex].quantity += action.payload.quantity;
+    console.log('after',newState[existingCartItemIndex].quantity);
     return newState;
   }
   return [...state.items, action.payload];
