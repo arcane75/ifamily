@@ -23,6 +23,7 @@ const Sidebar = (props) => {
     const [open, setOpen] = useState(false);
     const [clicked, setClicked] = useState(0);
     const [click, setClick] = useState(false);
+    const [category, setCategory] = useState([]);
     const [sidebarItem, setSidebar] = useState([]);
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -75,14 +76,13 @@ const Sidebar = (props) => {
 
         }} >
             <List>
-
                 {
                     sidebarItem?.map((sideItem) =>
                         <Box >
-
                             <ListItem button onClick={() => {
                                 setOpen(!open)
                                 setClicked(sideItem.type_id)
+                                
                             }}
                                 component={Link}
                                 to={`/category/${sideItem.type_id}`}
@@ -96,7 +96,7 @@ const Sidebar = (props) => {
                                 </ListItemAvatar>
                                 <ListItemText
                                     onClick={() => {
-                                        dispatch({ type: 'IS_CLICKED', payload: true });
+                                        // dispatch({ type: 'IS_CLICKED', payload: true });
                                         setClick(isClicked)
 
                                     }}
@@ -151,7 +151,7 @@ const Sidebar = (props) => {
 
     const container =
         window !== undefined ? () => window().document.body : undefined;
- 
+
     return (
         <Box
             sx={{
@@ -163,7 +163,7 @@ const Sidebar = (props) => {
                     lg: 'flex',
                     md: 'flex',
                 }
-            
+
             }}>
 
             <Toolbar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}>
@@ -236,23 +236,23 @@ const Sidebar = (props) => {
                 sx={{
                     flexGrow: 1,
                     pt: 3,
-                    pr: {md: 3, sm: 0, lg: 3},
-                    mt: {md: 10, sm: 0, lg: 10},
+                    pr: { md: 3, sm: 0, lg: 3 },
+                    mt: { md: 10, sm: 0, lg: 10 },
                     width: {
                         sm: `calc(100% - ${drawerWidth}px)`,
                     },
 
                 }}
             >
-                {
+                {/* {
                     isClicked ?
                         <Outlet></Outlet>
                         :
                         <Products
                             productList={showProduct}
                         />
-                }
-
+                } */}
+                <Outlet></Outlet>
             </Box>
         </Box>
     );

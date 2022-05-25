@@ -16,6 +16,7 @@ import SearchProduct from "./pages/SearchProduct";
 import CheckoutWithSidebar from "./features/checkouts/checkout-two/checkout-two";
 import OrdersContent from "./features/user-profile/order/order";
 import CartMobile from "./features/carts/cartMobile";
+import HomeProducts from "./Components/Home/HomeProducts";
 
 // External CSS import here
 
@@ -40,7 +41,9 @@ function App() {
 
                 <BrowserRouter>
                   <Routes>
-                    <Route path="/" element={<Home />}>
+
+                    <Route path="/" element={<><Home /> </>}>
+                      {/* <Route path="/" element={<HomeProducts />} /> */}
 
                       <Route
                         path="/category/:type_id"
